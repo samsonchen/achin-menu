@@ -41,7 +41,7 @@ export const seafoodItems = [
     desc: _, note: _,
   },
   {
-    names: { zh: '豆鼓鮮蚵',     en: 'Oyster · Black Bean',    ja: '牡蠣·豆豉',             ko: '굴·두반장'        },
+    names: { zh: '豆鼓鮮蚵',     en: 'Oyster · Black Bean',    ja: '牡蠣·豆豉',             ko: '굴·두치'          },
     price: 'NT$300',  image: 'sf-4.png', emoji: '🦪', tags: [],
     desc: _, note: _,
   },
@@ -81,7 +81,7 @@ export const seafoodItems = [
     desc: _, note: _,
   },
   {
-    names: { zh: '蒜苗鯊魚肉',   en: 'Garlic Shark Meat',       ja: 'ニンニク·サメ肉',       ko: '마늘·상어살'      },
+    names: { zh: '蒜苗鯊魚肉',   en: 'Garlic Shoots & Shark',   ja: '青ニンニク·サメ肉',     ko: '마늘종·상어살'    },
     price: 'NT$400',  image: null, emoji: '🦈', tags: [],
     desc: _, note: _,
   },
@@ -97,8 +97,8 @@ export const stirFryItems = [
   {
     names: { zh: '熱炒三鮮',   en: 'Stir-Fry Three Fresh',   ja: '三鮮炒め',       ko: '삼선볶음'      },
     price: 'NT$350',  image: 'hsf-1.jpg', emoji: '🥘', tags: [],
-    desc: { zh: '魷魚、花枝、蝦仁', en: 'Squid, Cuttlefish, Shrimp', ja: 'イカ、コウイカ、エビ', ko: '오징어、갑오징어、새우' },
-    note: { zh: '辣度可調整',        en: 'Spice level adjustable',    ja: '辛さ調整可',              ko: '맵기 조절 가능'             },
+    desc: { zh: '魷魚、干貝、蝦仁', en: 'Squid, Scallops, Shrimp', ja: 'イカ、ホタテ、エビ', ko: '오징어、가리비、새우' },
+    note: { zh: '',        en: '',    ja: '',              ko: ''             },
   },
   {
     names: { zh: '塔香海香菇', en: 'Basil Seafood Mushroom', ja: 'バジル·キノコ',   ko: '바질·버섯'     },
@@ -125,7 +125,7 @@ export const stirFryItems = [
 // ── 肉類 ────────────────────────────────────────────────────────────────────
 export const meatItems = [
   {
-    names: { zh: '醬爆嫩牛肉', en: 'Sauce-Braised Beef',   ja: 'ソース炒め牛肉',  ko: '소스볶음 소고기' },
+    names: { zh: '醬爆嫩牛肉', en: 'Soy Sauce Stir-Fried Beef', ja: '醤炒め牛肉',  ko: '소스볶음 소고기' },
     price: 'NT$280',  image: null, emoji: '🥩', tags: ['R', '3', 'B'],
     desc: _, note: _,
   },
