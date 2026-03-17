@@ -352,7 +352,7 @@ function Grid({ items, Card = MenuCard, onSelect }) {
   return (
     <div className="flex flex-col gap-3">
       {rows.map((row, ri) => (
-        <div key={ri} className="grid gap-3" style={{ gridTemplateColumns: `repeat(${row.length}, 1fr)` }}>
+        <div key={ri} className="grid gap-3" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
           {row.map((item, ci) => <Card key={ci} {...item} onSelect={onSelect} />)}
         </div>
       ))}
