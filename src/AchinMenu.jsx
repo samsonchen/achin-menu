@@ -96,18 +96,19 @@ const UI = {
   },
 }
 
-// Tag color mapping
+// Tag style + emoji mapping (matches design)
 const TAG_COLORS = {
-  '推薦':  { bg: '#FFF0E8', text: '#D89575' },
-  '招牌':  { bg: '#FFF0E8', text: '#D89575' },
-  '小辣':  { bg: '#FFF3E0', text: '#E07020' },
-  '中辣':  { bg: '#FFE8E0', text: '#C04020' },
-  '大辣':  { bg: '#FFDDDD', text: '#A02020' },
-  '含豬肉': { bg: '#F0F0EE', text: '#6D6C6A' },
-  '含牛肉': { bg: '#F0F0EE', text: '#6D6C6A' },
-  '含羊肉': { bg: '#F0F0EE', text: '#6D6C6A' },
+  '推薦':  { bg: '#FFF8E1', text: '#D4A64A', emoji: '⭐' },
+  '招牌':  { bg: '#FFF8E1', text: '#D4A64A', emoji: '⭐' },
+  '小辣':  { bg: '#FFF0E6', text: '#E8784A', emoji: '🌶' },
+  '中辣':  { bg: '#FFE8E0', text: '#C04020', emoji: '🌶' },
+  '大辣':  { bg: '#FFE5E5', text: '#D64545', emoji: '🔥' },
+  '含豬肉': { bg: '#FFE8F0', text: '#C75680', emoji: '🐷' },
+  '含牛肉': { bg: '#F0E4D8', text: '#8B5E3C', emoji: '🐄' },
+  '含羊肉': { bg: '#F0E4D8', text: '#8B5E3C', emoji: '🐑' },
+  '素菜':  { bg: '#E8F5E9', text: '#3D8A5A', emoji: '🌿' },
 }
-const TAG_DEFAULT = { bg: '#EDECEA', text: '#6D6C6A' }
+const TAG_DEFAULT = { bg: '#EDECEA', text: '#6D6C6A', emoji: '' }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -183,10 +184,26 @@ function ItemModal({ item, lk, t, onClose }) {
                     className="text-[12px] font-semibold px-[10px] py-[4px] rounded-full"
                     style={{ backgroundColor: c.bg, color: c.text }}
                   >
-                    {tag}
+                    {c.emoji ? `${c.emoji} ${tag}` : tag}
                   </span>
                 )
               })}
+            </div>
+          )}
+
+          {/* Description */}
+          {item.desc && (
+            <div className="flex flex-col gap-1">
+              <span className="text-[11px] font-semibold text-[#9C9B99]">餐點說明</span>
+              <span className="text-[13px] text-[#1A1918] leading-relaxed">{item.desc}</span>
+            </div>
+          )}
+
+          {/* Note */}
+          {item.note && (
+            <div className="flex flex-col gap-1">
+              <span className="text-[11px] font-semibold text-[#9C9B99]">備註</span>
+              <span className="text-[13px] text-[#6D6C6A] leading-relaxed">{item.note}</span>
             </div>
           )}
 
