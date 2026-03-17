@@ -303,7 +303,7 @@ function SoupCard({ item, name, price, imgBg, priceColor, onSelect }) {
     >
       <div
         className="flex items-center justify-center rounded-t-xl w-full overflow-hidden"
-        style={{ height: 120, backgroundColor: imgBg }}
+        style={{ height: 140, backgroundColor: imgBg }}
       >
         {item.image ? (
           <img src={imgUrl(item.image)} alt={name} className="w-full h-full object-cover" />
