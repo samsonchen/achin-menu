@@ -22,7 +22,7 @@
 export const seafoodItems = [
   {
     names: { zh: '透抽·三杯',     en: 'Squid · Three Cup',      ja: 'イカ·三杯炒め',         ko: '오징어·삼배'      },
-    price: null,      image: null, emoji: '🦑', tags: ['推薦'],
+    price: 'NT$400',      image: null, emoji: '🦑', tags: ['推薦'],
     desc: '', note: '',
   },
   {
@@ -32,7 +32,7 @@ export const seafoodItems = [
   },
   {
     names: { zh: '透抽·清炒',     en: 'Squid · Stir-Fried',     ja: 'イカ·清炒め',           ko: '오징어·볶음'      },
-    price: null,      image: null, emoji: '🦑', tags: [],
+    price: 'NT$400',      image: null, emoji: '🦑', tags: [],
     desc: '', note: '',
   },
   {
@@ -47,7 +47,7 @@ export const seafoodItems = [
   },
   {
     names: { zh: '鮮蝦·川燙',     en: 'Shrimp · Blanched',      ja: 'エビ·ボイル',           ko: '새우·데침'        },
-    price: null,      image: null, emoji: '🍤', tags: [],
+    price: 'NT$350',      image: null, emoji: '🍤', tags: [],
     desc: '', note: '',
   },
   {
@@ -57,12 +57,12 @@ export const seafoodItems = [
   },
   {
     names: { zh: '鮮蝦·麻油',     en: 'Shrimp · Sesame Oil',    ja: 'エビ·ごま油炒め',       ko: '새우·참기름'      },
-    price: null,      image: null, emoji: '🍤', tags: [],
+    price: 'NT$350',      image: null, emoji: '🍤', tags: [],
     desc: '', note: '',
   },
   {
     names: { zh: '鮮蝦·蒜香奶油', en: 'Shrimp · Garlic Butter', ja: 'エビ·ガーリックバター', ko: '새우·마늘버터'    },
-    price: null,      image: null, emoji: '🍤', tags: ['推薦'],
+    price: 'NT$350',      image: null, emoji: '🍤', tags: ['推薦'],
     desc: '', note: '',
   },
   {
