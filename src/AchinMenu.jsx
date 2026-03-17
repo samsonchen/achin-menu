@@ -454,7 +454,7 @@ export default function AchinMenu() {
       {/* Tag Legend */}
       <div className="bg-[#FAFAF8] px-3 py-2 flex items-center gap-2 flex-wrap">
         <span className="text-[10px] font-medium text-[#9C9B99] flex-shrink-0">{t.tagLegend}</span>
-        {['R', 1, 3, 'P', 'B', 'V'].map((key) => {
+        {['R', '1', '3', 'P', 'B', 'V'].map((key) => {
           const c = TAG_DEFS[key]
           return (
             <span

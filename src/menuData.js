@@ -121,12 +121,12 @@ export const stirFryItems = [
 export const meatItems = [
   {
     names: { zh: '醬爆嫩牛肉', en: 'Sauce-Braised Beef',   ja: 'ソース炒め牛肉',  ko: '소스볶음 소고기' },
-    price: 'NT$280',  image: null, emoji: '🥩', tags: ['R', 3, 'B'],
+    price: 'NT$280',  image: null, emoji: '🥩', tags: ['R', '3', 'B'],
     desc: '', note: '',
   },
   {
     names: { zh: '沙茶羊肉',   en: 'Satay Lamb',            ja: 'サテー羊肉',      ko: '사테이 양고기'  },
-    price: 'NT$300',  image: null, emoji: '🍖', tags: [1],
+    price: 'NT$300',  image: null, emoji: '🍖', tags: ['1'],
     desc: '', note: '',
   },
   {
