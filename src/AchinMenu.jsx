@@ -100,15 +100,15 @@ const UI = {
   },
 }
 
-// Tag definitions — keyed by letter code matching menuData.js
-//   R=推薦  A=小辣  B=中辣  C=大辣  P=含豬肉  E=含牛肉  L=含羊肉  V=素菜
+// Tag definitions — keyed by letter/number code matching menuData.js
+//   R=推薦  1=小辣  2=中辣  3=大辣  P=含豬肉  B=含牛肉  L=含羊肉  V=素菜
 const TAG_DEFS = {
   R: { names: { zh: '推薦',   en: 'Recommended', ja: 'おすすめ',     ko: '추천'      }, bg: '#FFF8E1', text: '#D4A64A', emoji: '⭐' },
-  A: { names: { zh: '小辣',   en: 'Mild Spicy',  ja: '小辛',         ko: '약간 매운' }, bg: '#FFF0E6', text: '#E8784A', emoji: '🌶' },
-  B: { names: { zh: '中辣',   en: 'Medium Spicy',ja: '中辛',         ko: '보통 매운' }, bg: '#FFE8E0', text: '#C04020', emoji: '🌶' },
-  C: { names: { zh: '大辣',   en: 'Very Spicy',  ja: '大辛',         ko: '많이 매운' }, bg: '#FFE5E5', text: '#D64545', emoji: '🔥' },
+  1: { names: { zh: '小辣',   en: 'Mild Spicy',  ja: '小辛',         ko: '약간 매운' }, bg: '#FFF0E6', text: '#E8784A', emoji: '🌶' },
+  2: { names: { zh: '中辣',   en: 'Medium Spicy',ja: '中辛',         ko: '보통 매운' }, bg: '#FFE8E0', text: '#C04020', emoji: '🌶' },
+  3: { names: { zh: '大辣',   en: 'Very Spicy',  ja: '大辛',         ko: '많이 매운' }, bg: '#FFE5E5', text: '#D64545', emoji: '🔥' },
   P: { names: { zh: '含豬肉', en: 'Pork',        ja: '豚肉含有',     ko: '돼지고기'  }, bg: '#FFE8F0', text: '#C75680', emoji: '🐷' },
-  E: { names: { zh: '含牛肉', en: 'Beef',        ja: '牛肉含有',     ko: '소고기'    }, bg: '#F0E4D8', text: '#8B5E3C', emoji: '🐄' },
+  B: { names: { zh: '含牛肉', en: 'Beef',        ja: '牛肉含有',     ko: '소고기'    }, bg: '#F0E4D8', text: '#8B5E3C', emoji: '🐄' },
   L: { names: { zh: '含羊肉', en: 'Lamb',        ja: 'ラム肉含有',   ko: '양고기'    }, bg: '#F0E4D8', text: '#8B5E3C', emoji: '🐑' },
   V: { names: { zh: '素菜',   en: 'Vegetarian',  ja: 'ベジタリアン', ko: '채식'      }, bg: '#E8F5E9', text: '#3D8A5A', emoji: '🌿' },
 }
@@ -454,7 +454,7 @@ export default function AchinMenu() {
       {/* Tag Legend */}
       <div className="bg-[#FAFAF8] px-3 py-2 flex items-center gap-2 flex-wrap">
         <span className="text-[10px] font-medium text-[#9C9B99] flex-shrink-0">{t.tagLegend}</span>
-        {['R', 'A', 'C', 'P', 'E', 'V'].map((key) => {
+        {['R', 1, 3, 'P', 'B', 'V'].map((key) => {
           const c = TAG_DEFS[key]
           return (
             <span

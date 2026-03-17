@@ -8,15 +8,15 @@
 //           若尚未有圖片，填 null，系統會顯示下方 emoji 代替
 //    emoji  無圖片時顯示的圖示（圖片備用）
 //    tags   標記陣列，填入標記字母，留空填 []
-//           R 推薦   A 小辣  B 中辣  C 大辣
-//           P 含豬肉  E 含牛肉  L 含羊肉  V 素菜
+//           R 推薦   1 小辣  2 中辣  3 大辣
+//           P 含豬肉  B 含牛肉  L 含羊肉  V 素菜
 //    desc   餐點說明（中文），不需要填寫時留空字串 ''
 //    note   備註（中文），不需要填寫時留空字串 ''
 //
 //  新增項目範例：
 //    { names: { zh: '蒜炒螃蟹', en: 'Garlic Crab', ja: 'ニンニクカニ', ko: '마늘게' },
 //      price: 'NT$480', image: 'crab-garlic.jpg', emoji: '🦀',
-//      tags: ['R'], desc: '', note: '' }
+//      tags: ['R', 3], desc: '', note: '' }
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ── 海鮮類 ──────────────────────────────────────────────────────────────────
@@ -121,12 +121,12 @@ export const stirFryItems = [
 export const meatItems = [
   {
     names: { zh: '醬爆嫩牛肉', en: 'Sauce-Braised Beef',   ja: 'ソース炒め牛肉',  ko: '소스볶음 소고기' },
-    price: 'NT$280',  image: null, emoji: '🥩', tags: ['R', 'C', 'E'],
+    price: 'NT$280',  image: null, emoji: '🥩', tags: ['R', 3, 'B'],
     desc: '', note: '',
   },
   {
     names: { zh: '沙茶羊肉',   en: 'Satay Lamb',            ja: 'サテー羊肉',      ko: '사테이 양고기'  },
-    price: 'NT$300',  image: null, emoji: '🍖', tags: ['A'],
+    price: 'NT$300',  image: null, emoji: '🍖', tags: [1],
     desc: '', note: '',
   },
   {
