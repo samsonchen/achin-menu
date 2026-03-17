@@ -7,27 +7,28 @@
 //    image  圖片檔名，例如 'hsf-1.jpg'，圖片放在 public/images/ 資料夾
 //           若尚未有圖片，填 null，系統會顯示下方 emoji 代替
 //    emoji  無圖片時顯示的圖示（圖片備用）
-//    tags   標記陣列，可用標記：'推薦' '小辣' '中辣' '大辣' '含豬肉' '含牛肉' '含羊肉' '素菜'
-//           留空填 []
+//    tags   標記陣列，填入標記字母，留空填 []
+//           R 推薦   A 小辣  B 中辣  C 大辣
+//           P 含豬肉  E 含牛肉  L 含羊肉  V 素菜
 //    desc   餐點說明（中文），不需要填寫時留空字串 ''
 //    note   備註（中文），不需要填寫時留空字串 ''
 //
 //  新增項目範例：
 //    { names: { zh: '蒜炒螃蟹', en: 'Garlic Crab', ja: 'ニンニクカニ', ko: '마늘게' },
 //      price: 'NT$480', image: 'crab-garlic.jpg', emoji: '🦀',
-//      tags: ['推薦'], desc: '', note: '' }
+//      tags: ['R'], desc: '', note: '' }
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ── 海鮮類 ──────────────────────────────────────────────────────────────────
 export const seafoodItems = [
   {
     names: { zh: '透抽·三杯',     en: 'Squid · Three Cup',      ja: 'イカ·三杯炒め',         ko: '오징어·삼배'      },
-    price: 'NT$400',      image: null, emoji: '🦑', tags: ['推薦'],
+    price: 'NT$400',      image: null, emoji: '🦑', tags: ['R'],
     desc: '', note: '',
   },
   {
     names: { zh: '透抽·蛋香',     en: 'Squid · Egg Sauce',      ja: 'イカ·卵炒め',           ko: '오징어·달걀'      },
-    price: 'NT$400',  image: null, emoji: '🦑', tags: ['推薦'],
+    price: 'NT$400',  image: null, emoji: '🦑', tags: ['R'],
     desc: '', note: '',
   },
   {
@@ -62,12 +63,12 @@ export const seafoodItems = [
   },
   {
     names: { zh: '鮮蝦·蒜香奶油', en: 'Shrimp · Garlic Butter', ja: 'エビ·ガーリックバター', ko: '새우·마늘버터'    },
-    price: 'NT$350',      image: null, emoji: '🍤', tags: ['推薦'],
+    price: 'NT$350',      image: null, emoji: '🍤', tags: ['R'],
     desc: '', note: '',
   },
   {
     names: { zh: '招牌滑蛋蝦仁', en: 'Signature Egg & Shrimp',  ja: '看板滑り卵エビ',         ko: '시그니처 달걀새우' },
-    price: 'NT$350',  image: null, emoji: '🥚', tags: ['推薦'],
+    price: 'NT$350',  image: null, emoji: '🥚', tags: ['R'],
     desc: '', note: '',
   },
   {
@@ -120,17 +121,17 @@ export const stirFryItems = [
 export const meatItems = [
   {
     names: { zh: '醬爆嫩牛肉', en: 'Sauce-Braised Beef',   ja: 'ソース炒め牛肉',  ko: '소스볶음 소고기' },
-    price: 'NT$280',  image: null, emoji: '🥩', tags: ['推薦', '大辣', '含牛肉'],
+    price: 'NT$280',  image: null, emoji: '🥩', tags: ['R', 'C', 'E'],
     desc: '', note: '',
   },
   {
     names: { zh: '沙茶羊肉',   en: 'Satay Lamb',            ja: 'サテー羊肉',      ko: '사테이 양고기'  },
-    price: 'NT$300',  image: null, emoji: '🍖', tags: ['小辣'],
+    price: 'NT$300',  image: null, emoji: '🍖', tags: ['A'],
     desc: '', note: '',
   },
   {
     names: { zh: '秘製滷豬腳', en: 'Braised Pork Knuckle', ja: '秘伝豚足煮込み',  ko: '비법 족발조림'  },
-    price: 'NT$550',  image: null, emoji: '🍗', tags: ['推薦', '含豬肉'],
+    price: 'NT$550',  image: null, emoji: '🍗', tags: ['R', 'P'],
     desc: '', note: '',
   },
 ]
@@ -144,7 +145,7 @@ export const friedItems = [
   },
   {
     names: { zh: '薯條',     en: 'French Fries',      ja: 'フライドポテト', ko: '감자튀김'    },
-    price: 'NT$120',  image: null, emoji: '🍟', tags: ['素菜'],
+    price: 'NT$120',  image: null, emoji: '🍟', tags: ['V'],
     desc: '', note: '',
   },
   {
@@ -191,7 +192,7 @@ export const soupItems = [
 export const vegItems = [
   {
     names: { zh: '季節時蔬', en: 'Seasonal Vegetables', ja: '旬の野菜', ko: '제철 채소' },
-    price: 'NT$180',  image: null, emoji: '🥬', tags: ['素菜'],
+    price: 'NT$180',  image: null, emoji: '🥬', tags: ['V'],
     desc: '', note: '',
   },
 ]
@@ -200,13 +201,13 @@ export const vegItems = [
 export const stapleItems = [
   {
     names: { zh: '白飯',  en: 'Steamed Rice',  ja: 'ご飯',     ko: '밥'     },
-    price: 'NT$15',   image: null, emoji: '🍚', tags: ['素菜'],
+    price: 'NT$15',   image: null, emoji: '🍚', tags: ['V'],
     sub: { zh: '每碗計算', en: 'Per bowl',     ja: '一杯ごと', ko: '한 공기당' },
     desc: '', note: '',
   },
   {
     names: { zh: '炒麵',  en: 'Fried Noodles', ja: '焼きそば', ko: '볶음면' },
-    price: 'NT$100',  image: null, emoji: '🍜', tags: ['含豬肉'],
+    price: 'NT$100',  image: null, emoji: '🍜', tags: ['P'],
     sub: { zh: '每份計算', en: 'Per serving',  ja: '一人前ごと', ko: '1인분당' },
     desc: '', note: '',
   },

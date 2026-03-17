@@ -21,6 +21,7 @@ const UI = {
     footerLang:   '語言選擇 · Language',
     footerCopy:   '© 2024 阿卿海鮮店 · 價格可能調整',
     close:        '關閉',
+    tagLegend:    '標記說明',
     sections: {
       seafood:  { main: '海鮮類', sub: '(Seafood)' },
       stirFry:  { main: '熱炒類', sub: '(Hot Stir-Fry)' },
@@ -42,6 +43,7 @@ const UI = {
     footerLang:   'Language · 語言選擇',
     footerCopy:   '© 2024 A-Qing Seafood · Prices subject to change',
     close:        'Close',
+    tagLegend:    'Legend',
     sections: {
       seafood:  { main: 'Seafood',     sub: '海鮮類' },
       stirFry:  { main: 'Stir-Fry',    sub: '熱炒類' },
@@ -63,6 +65,7 @@ const UI = {
     footerLang:   '言語選択 · Language',
     footerCopy:   '© 2024 阿卿海鮮店 · 価格は変更になる場合があります',
     close:        '閉じる',
+    tagLegend:    '凡例',
     sections: {
       seafood:  { main: '海鮮類',     sub: 'Seafood' },
       stirFry:  { main: '炒め物類',   sub: 'Hot Stir-Fry' },
@@ -84,6 +87,7 @@ const UI = {
     footerLang:   '언어 선택 · Language',
     footerCopy:   '© 2024 아칭 해산물 · 가격은 변경될 수 있습니다',
     close:        '닫기',
+    tagLegend:    '범례',
     sections: {
       seafood:  { main: '해산물류',  sub: 'Seafood' },
       stirFry:  { main: '볶음류',    sub: 'Hot Stir-Fry' },
@@ -96,19 +100,19 @@ const UI = {
   },
 }
 
-// Tag style + emoji mapping (matches design)
-const TAG_COLORS = {
-  '推薦':  { bg: '#FFF8E1', text: '#D4A64A', emoji: '⭐' },
-  '招牌':  { bg: '#FFF8E1', text: '#D4A64A', emoji: '⭐' },
-  '小辣':  { bg: '#FFF0E6', text: '#E8784A', emoji: '🌶' },
-  '中辣':  { bg: '#FFE8E0', text: '#C04020', emoji: '🌶' },
-  '大辣':  { bg: '#FFE5E5', text: '#D64545', emoji: '🔥' },
-  '含豬肉': { bg: '#FFE8F0', text: '#C75680', emoji: '🐷' },
-  '含牛肉': { bg: '#F0E4D8', text: '#8B5E3C', emoji: '🐄' },
-  '含羊肉': { bg: '#F0E4D8', text: '#8B5E3C', emoji: '🐑' },
-  '素菜':  { bg: '#E8F5E9', text: '#3D8A5A', emoji: '🌿' },
+// Tag definitions — keyed by letter code matching menuData.js
+//   R=推薦  A=小辣  B=中辣  C=大辣  P=含豬肉  E=含牛肉  L=含羊肉  V=素菜
+const TAG_DEFS = {
+  R: { names: { zh: '推薦',   en: 'Recommended', ja: 'おすすめ',     ko: '추천'      }, bg: '#FFF8E1', text: '#D4A64A', emoji: '⭐' },
+  A: { names: { zh: '小辣',   en: 'Mild Spicy',  ja: '小辛',         ko: '약간 매운' }, bg: '#FFF0E6', text: '#E8784A', emoji: '🌶' },
+  B: { names: { zh: '中辣',   en: 'Medium Spicy',ja: '中辛',         ko: '보통 매운' }, bg: '#FFE8E0', text: '#C04020', emoji: '🌶' },
+  C: { names: { zh: '大辣',   en: 'Very Spicy',  ja: '大辛',         ko: '많이 매운' }, bg: '#FFE5E5', text: '#D64545', emoji: '🔥' },
+  P: { names: { zh: '含豬肉', en: 'Pork',        ja: '豚肉含有',     ko: '돼지고기'  }, bg: '#FFE8F0', text: '#C75680', emoji: '🐷' },
+  E: { names: { zh: '含牛肉', en: 'Beef',        ja: '牛肉含有',     ko: '소고기'    }, bg: '#F0E4D8', text: '#8B5E3C', emoji: '🐄' },
+  L: { names: { zh: '含羊肉', en: 'Lamb',        ja: 'ラム肉含有',   ko: '양고기'    }, bg: '#F0E4D8', text: '#8B5E3C', emoji: '🐑' },
+  V: { names: { zh: '素菜',   en: 'Vegetarian',  ja: 'ベジタリアン', ko: '채식'      }, bg: '#E8F5E9', text: '#3D8A5A', emoji: '🌿' },
 }
-const TAG_DEFAULT = { bg: '#EDECEA', text: '#6D6C6A', emoji: '' }
+const TAG_DEFAULT = { names: { zh: '', en: '', ja: '', ko: '' }, bg: '#EDECEA', text: '#6D6C6A', emoji: '' }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -176,15 +180,15 @@ function ItemModal({ item, lk, t, onClose }) {
           {/* Tags */}
           {item.tags && item.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {item.tags.map((tag) => {
-                const c = TAG_COLORS[tag] ?? TAG_DEFAULT
+              {item.tags.map((key) => {
+                const c = TAG_DEFS[key] ?? TAG_DEFAULT
                 return (
                   <span
-                    key={tag}
+                    key={key}
                     className="text-[12px] font-semibold px-[10px] py-[4px] rounded-full"
                     style={{ backgroundColor: c.bg, color: c.text }}
                   >
-                    {c.emoji ? `${c.emoji} ${tag}` : tag}
+                    {c.emoji ? `${c.emoji} ${c.names[lk]}` : c.names[lk]}
                   </span>
                 )
               })}
@@ -222,19 +226,19 @@ function ItemModal({ item, lk, t, onClose }) {
 
 // ─── Card Components ──────────────────────────────────────────────────────────
 
-function TagPills({ tags }) {
+function TagPills({ tags, lk }) {
   if (!tags || tags.length === 0) return null
   return (
     <div className="flex flex-wrap gap-1 mt-0.5">
-      {tags.map((tag) => {
-        const c = TAG_COLORS[tag] ?? TAG_DEFAULT
+      {tags.map((key) => {
+        const c = TAG_DEFS[key] ?? TAG_DEFAULT
         return (
           <span
-            key={tag}
+            key={key}
             className="text-[9px] font-semibold px-[6px] py-[2px] rounded"
             style={{ backgroundColor: c.bg, color: c.text }}
           >
-            {c.emoji ? `${c.emoji} ${tag}` : tag}
+            {c.emoji ? `${c.emoji} ${c.names[lk]}` : c.names[lk]}
           </span>
         )
       })}
@@ -242,7 +246,7 @@ function TagPills({ tags }) {
   )
 }
 
-function MenuCard({ item, name, price, muted, onSelect }) {
+function MenuCard({ item, name, price, muted, lk, onSelect }) {
   return (
     <button
       className="rounded-xl overflow-hidden bg-white flex flex-col text-left w-full active:opacity-80 transition-opacity"
@@ -265,13 +269,13 @@ function MenuCard({ item, name, price, muted, onSelect }) {
         ) : (
           <span className="text-[12px] text-[#9C9B99]">NT$ —</span>
         )}
-        <TagPills tags={item.tags} />
+        <TagPills tags={item.tags} lk={lk} />
       </div>
     </button>
   )
 }
 
-function FriedCard({ item, name, price, onSelect }) {
+function FriedCard({ item, name, price, lk, onSelect }) {
   return (
     <button
       className="rounded-xl overflow-hidden bg-white flex flex-col text-left w-full active:opacity-80 transition-opacity"
@@ -288,13 +292,13 @@ function FriedCard({ item, name, price, onSelect }) {
       <div className="flex flex-col gap-1 p-[10px]">
         <span className="text-[15px] font-bold text-[#1A1918]">{name}</span>
         <span className="text-[14px] font-bold text-[#D89575]">{price}</span>
-        <TagPills tags={item.tags} />
+        <TagPills tags={item.tags} lk={lk} />
       </div>
     </button>
   )
 }
 
-function SoupCard({ item, name, price, imgBg, priceColor, onSelect }) {
+function SoupCard({ item, name, price, imgBg, priceColor, lk, onSelect }) {
   return (
     <button
       className="rounded-xl overflow-hidden bg-white flex flex-col text-left w-full active:opacity-80 transition-opacity"
@@ -314,7 +318,7 @@ function SoupCard({ item, name, price, imgBg, priceColor, onSelect }) {
       <div className="flex flex-col gap-1 p-[10px]">
         <span className="text-[15px] font-bold text-[#1A1918]">{name}</span>
         <span className="text-[14px] font-bold" style={{ color: priceColor }}>{price}</span>
-        <TagPills tags={item.tags} />
+        <TagPills tags={item.tags} lk={lk} />
       </div>
     </button>
   )
@@ -346,14 +350,14 @@ function SectionHeaderLarge({ accent, main, sub }) {
   )
 }
 
-function Grid({ items, Card = MenuCard, onSelect }) {
+function Grid({ items, Card = MenuCard, lk, onSelect }) {
   const rows = []
   for (let i = 0; i < items.length; i += 2) rows.push(items.slice(i, i + 2))
   return (
     <div className="flex flex-col gap-3">
       {rows.map((row, ri) => (
         <div key={ri} className="grid gap-3" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
-          {row.map((item, ci) => <Card key={ci} {...item} onSelect={onSelect} />)}
+          {row.map((item, ci) => <Card key={ci} {...item} lk={lk} onSelect={onSelect} />)}
         </div>
       ))}
     </div>
@@ -449,18 +453,19 @@ export default function AchinMenu() {
 
       {/* Tag Legend */}
       <div className="bg-[#FAFAF8] px-3 py-2 flex items-center gap-2 flex-wrap">
-        <span className="text-[10px] font-medium text-[#9C9B99] flex-shrink-0">標記說明</span>
-        {Object.entries(TAG_COLORS).filter(([k]) =>
-          ['小辣','大辣','含豬肉','含牛肉','素菜','推薦'].includes(k)
-        ).map(([tag, c]) => (
-          <span
-            key={tag}
-            className="text-[9px] font-semibold px-[6px] py-[2px] rounded"
-            style={{ backgroundColor: c.bg, color: c.text }}
-          >
-            {c.emoji} {tag}
-          </span>
-        ))}
+        <span className="text-[10px] font-medium text-[#9C9B99] flex-shrink-0">{t.tagLegend}</span>
+        {['R', 'A', 'C', 'P', 'E', 'V'].map((key) => {
+          const c = TAG_DEFS[key]
+          return (
+            <span
+              key={key}
+              className="text-[9px] font-semibold px-[6px] py-[2px] rounded"
+              style={{ backgroundColor: c.bg, color: c.text }}
+            >
+              {c.emoji} {c.names[lk]}
+            </span>
+          )
+        })}
       </div>
 
       {/* Hero Banner */}
@@ -481,7 +486,7 @@ export default function AchinMenu() {
       <div className="bg-white">
         <SectionHeaderSmall accent="#D89575" {...t.sections.seafood} />
         <div className="px-3 pb-4">
-          <Grid items={localise(seafoodItems)} onSelect={setSelectedItem} />
+          <Grid items={localise(seafoodItems)} lk={lk} onSelect={setSelectedItem} />
         </div>
       </div>
 
@@ -489,7 +494,7 @@ export default function AchinMenu() {
       <div className="bg-[#FAFAF8]">
         <SectionHeaderSmall accent="#3D8A5A" {...t.sections.stirFry} />
         <div className="px-3 pb-4 flex flex-col gap-3">
-          <Grid items={localise(stirFryItems)} onSelect={setSelectedItem} />
+          <Grid items={localise(stirFryItems)} lk={lk} onSelect={setSelectedItem} />
           <span className="text-[11px] text-[#9C9B99] mt-1">{t.stirFryNote}</span>
         </div>
       </div>
@@ -498,7 +503,7 @@ export default function AchinMenu() {
       <div className="bg-white">
         <SectionHeaderSmall accent="#D4A64A" {...t.sections.meat} />
         <div className="px-3 pb-4">
-          <Grid items={localise(meatItems)} onSelect={setSelectedItem} />
+          <Grid items={localise(meatItems)} lk={lk} onSelect={setSelectedItem} />
         </div>
       </div>
 
@@ -506,7 +511,7 @@ export default function AchinMenu() {
       <div className="bg-white pt-6 pb-2">
         <SectionHeaderLarge accent="#D89575" {...t.sections.fried} />
         <div className="px-3 pt-4 pb-4">
-          <Grid items={localise(friedItems)} Card={FriedCard} onSelect={setSelectedItem} />
+          <Grid items={localise(friedItems)} Card={FriedCard} lk={lk} onSelect={setSelectedItem} />
         </div>
       </div>
 
@@ -514,7 +519,7 @@ export default function AchinMenu() {
       <div className="bg-[#F5F4F1] pt-6 pb-2">
         <SectionHeaderLarge accent="#3D8A5A" {...t.sections.soups} />
         <div className="px-3 pt-4 pb-4">
-          <Grid items={localise(soupItems)} Card={SoupCard} onSelect={setSelectedItem} />
+          <Grid items={localise(soupItems)} Card={SoupCard} lk={lk} onSelect={setSelectedItem} />
         </div>
       </div>
 
