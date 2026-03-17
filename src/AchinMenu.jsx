@@ -222,6 +222,26 @@ function ItemModal({ item, lk, t, onClose }) {
 
 // ─── Card Components ──────────────────────────────────────────────────────────
 
+function TagPills({ tags }) {
+  if (!tags || tags.length === 0) return null
+  return (
+    <div className="flex flex-wrap gap-1 mt-0.5">
+      {tags.map((tag) => {
+        const c = TAG_COLORS[tag] ?? TAG_DEFAULT
+        return (
+          <span
+            key={tag}
+            className="text-[9px] font-semibold px-[6px] py-[2px] rounded"
+            style={{ backgroundColor: c.bg, color: c.text }}
+          >
+            {c.emoji ? `${c.emoji} ${tag}` : tag}
+          </span>
+        )
+      })}
+    </div>
+  )
+}
+
 function MenuCard({ item, name, price, muted, onSelect }) {
   return (
     <button
@@ -245,6 +265,7 @@ function MenuCard({ item, name, price, muted, onSelect }) {
         ) : (
           <span className="text-[12px] text-[#9C9B99]">NT$ —</span>
         )}
+        <TagPills tags={item.tags} />
       </div>
     </button>
   )
@@ -267,6 +288,7 @@ function FriedCard({ item, name, price, onSelect }) {
       <div className="flex flex-col gap-1 p-[10px]">
         <span className="text-[15px] font-bold text-[#1A1918]">{name}</span>
         <span className="text-[14px] font-bold text-[#D89575]">{price}</span>
+        <TagPills tags={item.tags} />
       </div>
     </button>
   )
@@ -292,6 +314,7 @@ function SoupCard({ item, name, price, imgBg, priceColor, onSelect }) {
       <div className="flex flex-col gap-1 p-[10px]">
         <span className="text-[15px] font-bold text-[#1A1918]">{name}</span>
         <span className="text-[14px] font-bold" style={{ color: priceColor }}>{price}</span>
+        <TagPills tags={item.tags} />
       </div>
     </button>
   )
@@ -422,6 +445,22 @@ export default function AchinMenu() {
       <div className="bg-white px-3 pt-[10px] pb-2 flex flex-col gap-[6px]">
         <LanguageBar lang={lang} setLang={setLang} light />
         <span className="text-[11px] text-[#9C9B99]">{t.langLabel}</span>
+      </div>
+
+      {/* Tag Legend */}
+      <div className="bg-[#FAFAF8] px-3 py-2 flex items-center gap-2 flex-wrap">
+        <span className="text-[10px] font-medium text-[#9C9B99] flex-shrink-0">標記說明</span>
+        {Object.entries(TAG_COLORS).filter(([k]) =>
+          ['小辣','大辣','含豬肉','含牛肉','素菜','推薦'].includes(k)
+        ).map(([tag, c]) => (
+          <span
+            key={tag}
+            className="text-[9px] font-semibold px-[6px] py-[2px] rounded"
+            style={{ backgroundColor: c.bg, color: c.text }}
+          >
+            {c.emoji} {tag}
+          </span>
+        ))}
       </div>
 
       {/* Hero Banner */}
