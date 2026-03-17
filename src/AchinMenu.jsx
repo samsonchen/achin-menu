@@ -1,4 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import {
+  seafoodItems, stirFryItems, meatItems,
+  friedItems, soupItems, vegItems, stapleItems,
+} from './menuData'
 
 // ─── i18n ─────────────────────────────────────────────────────────────────────
 
@@ -16,6 +20,7 @@ const UI = {
     footerSub:    'A-Qing Seafood Restaurant',
     footerLang:   '語言選擇 · Language',
     footerCopy:   '© 2024 阿卿海鮮店 · 價格可能調整',
+    close:        '關閉',
     sections: {
       seafood:  { main: '海鮮類', sub: '(Seafood)' },
       stirFry:  { main: '熱炒類', sub: '(Hot Stir-Fry)' },
@@ -25,11 +30,6 @@ const UI = {
       veg:      { main: '青菜類', sub: 'Vegetables' },
       staples:  { main: '主食類', sub: 'Staples' },
     },
-    vegName:    '季節時蔬',
-    staples: [
-      { name: '白飯', sub: '每碗計算' },
-      { name: '炒麵', sub: '每份計算' },
-    ],
   },
   en: {
     langLabel:    'Display Language · 顯示語言',
@@ -41,6 +41,7 @@ const UI = {
     footerSub:    'A-Qing Seafood Restaurant',
     footerLang:   'Language · 語言選擇',
     footerCopy:   '© 2024 A-Qing Seafood · Prices subject to change',
+    close:        'Close',
     sections: {
       seafood:  { main: 'Seafood',     sub: '海鮮類' },
       stirFry:  { main: 'Stir-Fry',    sub: '熱炒類' },
@@ -50,11 +51,6 @@ const UI = {
       veg:      { main: 'Vegetables',  sub: '青菜類' },
       staples:  { main: 'Staples',     sub: '主食類' },
     },
-    vegName:    'Seasonal Vegetables',
-    staples: [
-      { name: 'Steamed Rice',  sub: 'Per bowl' },
-      { name: 'Fried Noodles', sub: 'Per serving' },
-    ],
   },
   ja: {
     langLabel:    '言語選択 · Display Language',
@@ -66,6 +62,7 @@ const UI = {
     footerSub:    'A-Qing シーフードレストラン',
     footerLang:   '言語選択 · Language',
     footerCopy:   '© 2024 阿卿海鮮店 · 価格は変更になる場合があります',
+    close:        '閉じる',
     sections: {
       seafood:  { main: '海鮮類',     sub: 'Seafood' },
       stirFry:  { main: '炒め物類',   sub: 'Hot Stir-Fry' },
@@ -75,11 +72,6 @@ const UI = {
       veg:      { main: '野菜類',     sub: 'Vegetables' },
       staples:  { main: '主食類',     sub: 'Staples' },
     },
-    vegName:    '旬の野菜',
-    staples: [
-      { name: 'ご飯',     sub: '一杯ごと' },
-      { name: '焼きそば', sub: '一人前ごと' },
-    ],
   },
   ko: {
     langLabel:    '언어 선택 · Display Language',
@@ -91,6 +83,7 @@ const UI = {
     footerSub:    'A-Qing 해산물 식당',
     footerLang:   '언어 선택 · Language',
     footerCopy:   '© 2024 아칭 해산물 · 가격은 변경될 수 있습니다',
+    close:        '닫기',
     sections: {
       seafood:  { main: '해산물류',  sub: 'Seafood' },
       stirFry:  { main: '볶음류',    sub: 'Hot Stir-Fry' },
@@ -100,70 +93,131 @@ const UI = {
       veg:      { main: '채소류',    sub: 'Vegetables' },
       staples:  { main: '주식류',    sub: 'Staples' },
     },
-    vegName:    '제철 채소',
-    staples: [
-      { name: '밥',    sub: '한 공기당' },
-      { name: '볶음면', sub: '1인분당' },
-    ],
   },
 }
 
-// ─── Menu Data ────────────────────────────────────────────────────────────────
+// Tag color mapping
+const TAG_COLORS = {
+  '推薦':  { bg: '#FFF0E8', text: '#D89575' },
+  '招牌':  { bg: '#FFF0E8', text: '#D89575' },
+  '小辣':  { bg: '#FFF3E0', text: '#E07020' },
+  '中辣':  { bg: '#FFE8E0', text: '#C04020' },
+  '大辣':  { bg: '#FFDDDD', text: '#A02020' },
+  '含豬肉': { bg: '#F0F0EE', text: '#6D6C6A' },
+  '含牛肉': { bg: '#F0F0EE', text: '#6D6C6A' },
+  '含羊肉': { bg: '#F0F0EE', text: '#6D6C6A' },
+}
+const TAG_DEFAULT = { bg: '#EDECEA', text: '#6D6C6A' }
 
-const seafoodItems = [
-  { emoji: '🦑', names: { zh: '透抽·三杯',    en: 'Squid · Three Cup',       ja: 'イカ·三杯炒め',       ko: '오징어·삼배'       }, price: null },
-  { emoji: '🦑', names: { zh: '透抽·蛋香',    en: 'Squid · Egg Sauce',       ja: 'イカ·卵炒め',         ko: '오징어·달걀'       }, price: 'NT$400' },
-  { emoji: '🦑', names: { zh: '透抽·清炒',    en: 'Squid · Stir-Fried',      ja: 'イカ·清炒め',         ko: '오징어·볶음'       }, price: null },
-  { emoji: '🦪', names: { zh: '鮮蚵·豆鼓',    en: 'Oyster · Black Bean',     ja: '牡蠣·豆豉',           ko: '굴·두반장'         }, price: 'NT$300' },
-  { emoji: '🦪', names: { zh: '鮮蚵·蒜味',    en: 'Oyster · Garlic',         ja: '牡蠣·ニンニク',       ko: '굴·마늘'           }, price: 'NT$330' },
-  { emoji: '🍤', names: { zh: '鮮蝦·川燙',    en: 'Shrimp · Blanched',       ja: 'エビ·ボイル',         ko: '새우·데침'         }, price: null },
-  { emoji: '🍤', names: { zh: '鮮蝦·熱炒',    en: 'Shrimp · Stir-Fried',     ja: 'エビ·炒め',           ko: '새우·볶음'         }, price: 'NT$350' },
-  { emoji: '🍤', names: { zh: '鮮蝦·麻油',    en: 'Shrimp · Sesame Oil',     ja: 'エビ·ごま油炒め',     ko: '새우·참기름'       }, price: null },
-  { emoji: '🍤', names: { zh: '鮮蝦·蒜香奶油', en: 'Shrimp · Garlic Butter',  ja: 'エビ·ガーリックバター', ko: '새우·마늘버터'   }, price: null },
-  { emoji: '🥚', names: { zh: '招牌滑蛋蝦仁', en: 'Signature Egg & Shrimp',  ja: '看板滑り卵エビ',       ko: '시그니처 달걀새우'  }, price: 'NT$350' },
-  { emoji: '🐡', names: { zh: '芹香曼波魚',   en: 'Celery Mola Fish',        ja: 'セロリ·マンボウ',     ko: '미나리·개복치'     }, price: 'NT$450' },
-  { emoji: '🦈', names: { zh: '蒜苗鯊魚肉',   en: 'Garlic Shark Meat',       ja: 'ニンニク·サメ肉',     ko: '마늘·상어살'       }, price: 'NT$400' },
-  { emoji: '🦀', names: { zh: '蟹肉炒蛋',     en: 'Crab Egg Stir-Fry',       ja: 'カニ肉炒り卵',         ko: '게살·달걀볶음'     }, price: 'NT$400' },
-]
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
-const stirFryItems = [
-  { emoji: '🥘', names: { zh: '熱炒三鮮',   en: 'Stir-Fry Three Fresh',  ja: '三鮮炒め',       ko: '삼선볶음'       }, price: 'NT$350' },
-  { emoji: '🍄', names: { zh: '塔香海香菇', en: 'Basil Seafood Mushroom', ja: 'バジル·キノコ',   ko: '바질·버섯'      }, price: 'NT$250' },
-  { emoji: '🐠', names: { zh: '清蒸石斑魚', en: 'Steamed Grouper',        ja: '石斑魚の蒸し',   ko: '쪄낸 능성어'    }, price: 'NT$500' },
-  { emoji: '🍣', names: { zh: '東岸生魚片', en: 'East Coast Sashimi',     ja: '東海岸刺身',     ko: '동해안 회'      }, price: 'NT$350' },
-  { emoji: '🦞', names: { zh: '野生龍蝦',   en: 'Wild Lobster',           ja: '天然ロブスター', ko: '자연산 랍스터'  }, price: 'market', muted: true },
-]
+function imgUrl(filename) {
+  return `${import.meta.env.BASE_URL}images/${filename}`
+}
 
-const meatItems = [
-  { emoji: '🥩', names: { zh: '醬爆嫩牛肉', en: 'Sauce-Braised Beef',      ja: 'ソース炒め牛肉',    ko: '소스볶음 소고기' }, price: 'NT$280' },
-  { emoji: '🍖', names: { zh: '沙茶羊肉',   en: 'Satay Lamb',              ja: 'サテー羊肉',        ko: '사테이 양고기'  }, price: 'NT$300' },
-  { emoji: '🍗', names: { zh: '秘製滷豬腳', en: 'Braised Pork Knuckle',    ja: '秘伝豚足煮込み',    ko: '비법 족발조림'  }, price: 'NT$550' },
-]
+// ─── Item Detail Modal ────────────────────────────────────────────────────────
 
-const friedItems = [
-  { emoji: '🦑', names: { zh: '花枝丸',   en: 'Squid Balls',      ja: 'イカ団子',         ko: '오징어볼'    }, price: '$250' },
-  { emoji: '🍟', names: { zh: '薯條',     en: 'French Fries',     ja: 'フライドポテト',   ko: '감자튀김'    }, price: '$120' },
-  { emoji: '🐟', names: { zh: '炸魚柳',   en: 'Fried Fish Fillet', ja: '魚フライ',        ko: '생선튀김'    }, price: '$300' },
-  { emoji: '🥗', names: { zh: '魚蛋沙拉', en: 'Fish Ball Salad',  ja: '魚団子サラダ',     ko: '어묵 샐러드' }, price: '$300' },
-]
+function ItemModal({ item, lk, t, onClose }) {
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
 
-const soupItems = [
-  { emoji: '🐚', names: { zh: '蛤蜊湯',   en: 'Clam Soup',       ja: 'ハマグリスープ', ko: '조개탕'     }, price: '$250', imgBg: '#C8F0D8', priceColor: '#3D8A5A' },
-  { emoji: '🦪', names: { zh: '鮮蚵湯',   en: 'Oyster Soup',     ja: '牡蠣スープ',     ko: '굴탕'       }, price: '$300', imgBg: '#C8F0D8', priceColor: '#3D8A5A' },
-  { emoji: '🐡', names: { zh: '味噌魚湯', en: 'Miso Fish Soup',  ja: '味噌魚スープ',   ko: '된장생선국' }, price: '$480', imgBg: '#FFF3E0', priceColor: '#D89575' },
-  { emoji: '🍵', names: { zh: '鮮魚清湯', en: 'Clear Fish Soup', ja: '魚の清湯',       ko: '맑은생선국' }, price: '$480', imgBg: '#FFF3E0', priceColor: '#D89575' },
-]
+  const name  = item.names[lk]
+  const price = item.price === 'market' ? t.marketPrice : item.price
 
-// ─── Sub-components ──────────────────────────────────────────────────────────
-
-function MenuCard({ emoji, name, price, muted }) {
   return (
     <div
-      className="rounded-xl overflow-hidden bg-white flex flex-col"
-      style={{ boxShadow: '0 2px 12px rgba(26,25,24,0.03)' }}
+      className="fixed inset-0 z-50 flex items-end justify-center"
+      style={{ backgroundColor: 'rgba(26,25,24,0.65)' }}
+      onClick={onClose}
     >
-      <div className="flex items-center justify-center bg-[#EDECEA] rounded-t-xl" style={{ height: 140 }}>
-        <span style={{ fontSize: 40 }}>{emoji}</span>
+      <div
+        className="w-full max-w-[390px] bg-white rounded-t-2xl overflow-hidden"
+        style={{ boxShadow: '0 -4px 32px rgba(26,25,24,0.18)' }}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Image or emoji hero */}
+        {item.image ? (
+          <img
+            src={imgUrl(item.image)}
+            alt={name}
+            className="w-full object-cover"
+            style={{ height: 220 }}
+          />
+        ) : (
+          <div
+            className="w-full flex items-center justify-center bg-[#EDECEA]"
+            style={{ height: 180 }}
+          >
+            <span style={{ fontSize: 72 }}>{item.emoji}</span>
+          </div>
+        )}
+
+        {/* Content */}
+        <div className="px-5 pt-4 pb-8 flex flex-col gap-3">
+          {/* Name + price row */}
+          <div className="flex items-start justify-between gap-3">
+            <span className="text-[20px] font-bold text-[#1A1918] leading-snug flex-1">{name}</span>
+            {price ? (
+              <span
+                className="text-[18px] font-bold flex-shrink-0 mt-[1px]"
+                style={{ color: item.price === 'market' ? '#9C9B99' : '#D89575' }}
+              >
+                {price}
+              </span>
+            ) : (
+              <span className="text-[16px] text-[#9C9B99] flex-shrink-0 mt-[1px]">NT$ —</span>
+            )}
+          </div>
+
+          {/* Tags */}
+          {item.tags && item.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {item.tags.map((tag) => {
+                const c = TAG_COLORS[tag] ?? TAG_DEFAULT
+                return (
+                  <span
+                    key={tag}
+                    className="text-[12px] font-semibold px-[10px] py-[4px] rounded-full"
+                    style={{ backgroundColor: c.bg, color: c.text }}
+                  >
+                    {tag}
+                  </span>
+                )
+              })}
+            </div>
+          )}
+
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="mt-1 w-full h-11 rounded-xl bg-[#EDECEA] text-[15px] font-semibold text-[#1A1918] active:bg-[#DDDBD8] transition-colors"
+          >
+            {t.close}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ─── Card Components ──────────────────────────────────────────────────────────
+
+function MenuCard({ item, name, price, muted, onSelect }) {
+  return (
+    <button
+      className="rounded-xl overflow-hidden bg-white flex flex-col text-left w-full active:opacity-80 transition-opacity"
+      style={{ boxShadow: '0 2px 12px rgba(26,25,24,0.06)' }}
+      onClick={() => onSelect(item)}
+    >
+      <div className="flex items-center justify-center bg-[#EDECEA] rounded-t-xl w-full overflow-hidden" style={{ height: 140 }}>
+        {item.image ? (
+          <img src={imgUrl(item.image)} alt={name} className="w-full h-full object-cover" />
+        ) : (
+          <span style={{ fontSize: 40 }}>{item.emoji}</span>
+        )}
       </div>
       <div className="flex flex-col gap-1 p-[8px_10px_10px]">
         <span className="text-[13px] font-semibold text-[#1A1918] leading-snug">{name}</span>
@@ -175,46 +229,58 @@ function MenuCard({ emoji, name, price, muted }) {
           <span className="text-[12px] text-[#9C9B99]">NT$ —</span>
         )}
       </div>
-    </div>
+    </button>
   )
 }
 
-function FriedCard({ emoji, name, price }) {
+function FriedCard({ item, name, price, onSelect }) {
   return (
-    <div
-      className="rounded-xl overflow-hidden bg-white flex flex-col"
+    <button
+      className="rounded-xl overflow-hidden bg-white flex flex-col text-left w-full active:opacity-80 transition-opacity"
       style={{ boxShadow: '0 2px 8px rgba(26,25,24,0.07)' }}
+      onClick={() => onSelect(item)}
     >
-      <div className="flex items-center justify-center bg-[#EDECEA] rounded-t-xl" style={{ height: 140 }}>
-        <span style={{ fontSize: 36 }}>{emoji}</span>
+      <div className="flex items-center justify-center bg-[#EDECEA] rounded-t-xl w-full overflow-hidden" style={{ height: 140 }}>
+        {item.image ? (
+          <img src={imgUrl(item.image)} alt={name} className="w-full h-full object-cover" />
+        ) : (
+          <span style={{ fontSize: 36 }}>{item.emoji}</span>
+        )}
       </div>
       <div className="flex flex-col gap-1 p-[10px]">
         <span className="text-[15px] font-bold text-[#1A1918]">{name}</span>
         <span className="text-[14px] font-bold text-[#D89575]">{price}</span>
       </div>
-    </div>
+    </button>
   )
 }
 
-function SoupCard({ emoji, name, price, imgBg, priceColor }) {
+function SoupCard({ item, name, price, imgBg, priceColor, onSelect }) {
   return (
-    <div
-      className="rounded-xl overflow-hidden bg-white flex flex-col"
+    <button
+      className="rounded-xl overflow-hidden bg-white flex flex-col text-left w-full active:opacity-80 transition-opacity"
       style={{ boxShadow: '0 2px 8px rgba(26,25,24,0.07)' }}
+      onClick={() => onSelect(item)}
     >
       <div
-        className="flex items-center justify-center rounded-t-xl"
+        className="flex items-center justify-center rounded-t-xl w-full overflow-hidden"
         style={{ height: 120, backgroundColor: imgBg }}
       >
-        <span style={{ fontSize: 36 }}>{emoji}</span>
+        {item.image ? (
+          <img src={imgUrl(item.image)} alt={name} className="w-full h-full object-cover" />
+        ) : (
+          <span style={{ fontSize: 36 }}>{item.emoji}</span>
+        )}
       </div>
       <div className="flex flex-col gap-1 p-[10px]">
         <span className="text-[15px] font-bold text-[#1A1918]">{name}</span>
         <span className="text-[14px] font-bold" style={{ color: priceColor }}>{price}</span>
       </div>
-    </div>
+    </button>
   )
 }
+
+// ─── Layout Helpers ───────────────────────────────────────────────────────────
 
 function SectionHeaderSmall({ accent, main, sub }) {
   return (
@@ -240,14 +306,14 @@ function SectionHeaderLarge({ accent, main, sub }) {
   )
 }
 
-function Grid({ items, Card = MenuCard }) {
+function Grid({ items, Card = MenuCard, onSelect }) {
   const rows = []
   for (let i = 0; i < items.length; i += 2) rows.push(items.slice(i, i + 2))
   return (
     <div className="flex flex-col gap-3">
       {rows.map((row, ri) => (
         <div key={ri} className="grid gap-3" style={{ gridTemplateColumns: `repeat(${row.length}, 1fr)` }}>
-          {row.map((item, ci) => <Card key={ci} {...item} />)}
+          {row.map((item, ci) => <Card key={ci} {...item} onSelect={onSelect} />)}
         </div>
       ))}
     </div>
@@ -280,15 +346,18 @@ function LanguageBar({ lang, setLang, light = true }) {
 
 export default function AchinMenu() {
   const [lang, setLang] = useState('中文')
+  const [selectedItem, setSelectedItem] = useState(null)
   const lk = LANG_KEY[lang]
   const t = UI[lk]
 
-  // Resolve localised items
+  // Resolve localised display props for each item
   const localise = (items) =>
     items.map((item) => ({
       ...item,
       name: item.names[lk],
       price: item.price === 'market' ? t.marketPrice : item.price,
+      muted: item.price === 'market',
+      item,  // pass raw item for modal
     }))
 
   return (
@@ -356,7 +425,7 @@ export default function AchinMenu() {
       <div className="bg-white">
         <SectionHeaderSmall accent="#D89575" {...t.sections.seafood} />
         <div className="px-3 pb-4">
-          <Grid items={localise(seafoodItems)} />
+          <Grid items={localise(seafoodItems)} onSelect={setSelectedItem} />
         </div>
       </div>
 
@@ -364,7 +433,7 @@ export default function AchinMenu() {
       <div className="bg-[#FAFAF8]">
         <SectionHeaderSmall accent="#3D8A5A" {...t.sections.stirFry} />
         <div className="px-3 pb-4 flex flex-col gap-3">
-          <Grid items={localise(stirFryItems)} />
+          <Grid items={localise(stirFryItems)} onSelect={setSelectedItem} />
           <span className="text-[11px] text-[#9C9B99] mt-1">{t.stirFryNote}</span>
         </div>
       </div>
@@ -373,7 +442,7 @@ export default function AchinMenu() {
       <div className="bg-white">
         <SectionHeaderSmall accent="#D4A64A" {...t.sections.meat} />
         <div className="px-3 pb-4">
-          <Grid items={localise(meatItems)} />
+          <Grid items={localise(meatItems)} onSelect={setSelectedItem} />
         </div>
       </div>
 
@@ -381,7 +450,7 @@ export default function AchinMenu() {
       <div className="bg-white pt-6 pb-2">
         <SectionHeaderLarge accent="#D89575" {...t.sections.fried} />
         <div className="px-3 pt-4 pb-4">
-          <Grid items={localise(friedItems)} Card={FriedCard} />
+          <Grid items={localise(friedItems)} Card={FriedCard} onSelect={setSelectedItem} />
         </div>
       </div>
 
@@ -389,7 +458,7 @@ export default function AchinMenu() {
       <div className="bg-[#F5F4F1] pt-6 pb-2">
         <SectionHeaderLarge accent="#3D8A5A" {...t.sections.soups} />
         <div className="px-3 pt-4 pb-4">
-          <Grid items={localise(soupItems)} Card={SoupCard} />
+          <Grid items={localise(soupItems)} Card={SoupCard} onSelect={setSelectedItem} />
         </div>
       </div>
 
@@ -397,24 +466,28 @@ export default function AchinMenu() {
       <div className="bg-white pt-6 pb-2">
         <SectionHeaderLarge accent="#3D8A5A" {...t.sections.veg} />
         <div className="px-3 pt-4 pb-4">
-          <div
-            className="flex items-center rounded-xl overflow-hidden bg-white w-full"
-            style={{ boxShadow: '0 2px 8px rgba(26,25,24,0.07)' }}
-          >
-            <div
-              className="flex items-center justify-center flex-shrink-0 rounded-l-xl"
-              style={{ width: 80, height: 72, backgroundColor: '#C8F0D8' }}
+          {localise(vegItems).map((item, i) => (
+            <button
+              key={i}
+              className="flex items-center rounded-xl overflow-hidden bg-white w-full active:opacity-80 transition-opacity text-left"
+              style={{ boxShadow: '0 2px 8px rgba(26,25,24,0.07)' }}
+              onClick={() => setSelectedItem(item.item)}
             >
-              <span style={{ fontSize: 32 }}>🥬</span>
-            </div>
-            <div className="flex-1 flex items-center justify-between px-[14px] py-3">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-[15px] font-bold text-[#1A1918]">{t.vegName}</span>
-                <span className="text-[11px] text-[#9C9B99]">{t.vegSub}</span>
+              <div
+                className="flex items-center justify-center flex-shrink-0 rounded-l-xl"
+                style={{ width: 80, height: 72, backgroundColor: '#C8F0D8' }}
+              >
+                <span style={{ fontSize: 32 }}>{item.emoji}</span>
               </div>
-              <span className="text-[16px] font-bold text-[#3D8A5A]">$180</span>
-            </div>
-          </div>
+              <div className="flex-1 flex items-center justify-between px-[14px] py-3">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[15px] font-bold text-[#1A1918]">{item.name}</span>
+                  <span className="text-[11px] text-[#9C9B99]">{t.vegSub}</span>
+                </div>
+                <span className="text-[16px] font-bold text-[#3D8A5A]">{item.price}</span>
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 
@@ -422,14 +495,12 @@ export default function AchinMenu() {
       <div className="bg-[#F5F4F1] pt-6 pb-4">
         <SectionHeaderLarge accent="#D89575" {...t.sections.staples} />
         <div className="px-3 pt-4 flex flex-col gap-[10px]">
-          {[
-            { emoji: '🍚', price: '$15 /碗' },
-            { emoji: '🍜', price: '$100 /份' },
-          ].map((item, i) => (
-            <div
+          {localise(stapleItems).map((item, i) => (
+            <button
               key={i}
-              className="flex items-center rounded-xl overflow-hidden bg-white"
+              className="flex items-center rounded-xl overflow-hidden bg-white active:opacity-80 transition-opacity text-left w-full"
               style={{ boxShadow: '0 2px 8px rgba(26,25,24,0.07)' }}
+              onClick={() => setSelectedItem(item.item)}
             >
               <div
                 className="flex items-center justify-center flex-shrink-0 rounded-l-xl"
@@ -439,12 +510,12 @@ export default function AchinMenu() {
               </div>
               <div className="flex-1 flex items-center justify-between px-[14px] py-[10px]">
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-[15px] font-bold text-[#1A1918]">{t.staples[i].name}</span>
-                  <span className="text-[11px] text-[#9C9B99]">{t.staples[i].sub}</span>
+                  <span className="text-[15px] font-bold text-[#1A1918]">{item.name}</span>
+                  <span className="text-[11px] text-[#9C9B99]">{item.sub?.[lk]}</span>
                 </div>
                 <span className="text-[14px] font-bold text-[#D89575]">{item.price}</span>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -462,6 +533,16 @@ export default function AchinMenu() {
         </div>
         <span className="text-[11px] text-[#6D6C6A]">{t.footerCopy}</span>
       </div>
+
+      {/* Item Detail Modal */}
+      {selectedItem && (
+        <ItemModal
+          item={selectedItem}
+          lk={lk}
+          t={t}
+          onClose={() => setSelectedItem(null)}
+        />
+      )}
 
     </div>
   )
