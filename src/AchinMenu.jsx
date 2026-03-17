@@ -21,6 +21,8 @@ const UI = {
     footerLang:   '語言選擇 · Language',
     footerCopy:   '© 2024 阿卿海鮮店 · 價格可能調整',
     close:        '關閉',
+    descLabel:    '餐點說明',
+    noteLabel:    '備註',
     tagLegend:    '標記說明',
     sections: {
       seafood:  { main: '海鮮類', sub: '(Seafood)' },
@@ -43,6 +45,8 @@ const UI = {
     footerLang:   'Language · 語言選擇',
     footerCopy:   '© 2024 A-Qing Seafood · Prices subject to change',
     close:        'Close',
+    descLabel:    'Description',
+    noteLabel:    'Note',
     tagLegend:    'Legend',
     sections: {
       seafood:  { main: 'Seafood',     sub: '海鮮類' },
@@ -65,6 +69,8 @@ const UI = {
     footerLang:   '言語選択 · Language',
     footerCopy:   '© 2024 阿卿海鮮店 · 価格は変更になる場合があります',
     close:        '閉じる',
+    descLabel:    '説明',
+    noteLabel:    '備考',
     tagLegend:    '凡例',
     sections: {
       seafood:  { main: '海鮮類',     sub: 'Seafood' },
@@ -87,6 +93,8 @@ const UI = {
     footerLang:   '언어 선택 · Language',
     footerCopy:   '© 2024 아칭 해산물 · 가격은 변경될 수 있습니다',
     close:        '닫기',
+    descLabel:    '설명',
+    noteLabel:    '비고',
     tagLegend:    '범례',
     sections: {
       seafood:  { main: '해산물류',  sub: 'Seafood' },
@@ -196,18 +204,18 @@ function ItemModal({ item, lk, t, onClose }) {
           )}
 
           {/* Description */}
-          {item.desc && (
+          {item.desc?.[lk] && (
             <div className="flex flex-col gap-1">
-              <span className="text-[11px] font-semibold text-[#9C9B99]">餐點說明</span>
-              <span className="text-[13px] text-[#1A1918] leading-relaxed">{item.desc}</span>
+              <span className="text-[11px] font-semibold text-[#9C9B99]">{t.descLabel}</span>
+              <span className="text-[13px] text-[#1A1918] leading-relaxed">{item.desc[lk]}</span>
             </div>
           )}
 
           {/* Note */}
-          {item.note && (
+          {item.note?.[lk] && (
             <div className="flex flex-col gap-1">
-              <span className="text-[11px] font-semibold text-[#9C9B99]">備註</span>
-              <span className="text-[13px] text-[#6D6C6A] leading-relaxed">{item.note}</span>
+              <span className="text-[11px] font-semibold text-[#9C9B99]">{t.noteLabel}</span>
+              <span className="text-[13px] text-[#6D6C6A] leading-relaxed">{item.note[lk]}</span>
             </div>
           )}
 
@@ -406,30 +414,6 @@ export default function AchinMenu() {
 
   return (
     <div className="w-full max-w-[390px] mx-auto min-h-screen bg-[#F5F4F1] font-outfit overflow-x-hidden">
-
-      {/* Status Bar */}
-      <div className="flex items-center justify-between bg-white px-5" style={{ height: 62 }}>
-        <span className="text-[15px] font-semibold text-[#1A1918] font-inter">9:41</span>
-        <div className="flex items-center gap-[6px]">
-          <svg width="16" height="16" viewBox="0 0 24 20" fill="#1A1918">
-            <rect x="0"  y="14" width="4" height="6" rx="1"/>
-            <rect x="5"  y="10" width="4" height="10" rx="1"/>
-            <rect x="10" y="6"  width="4" height="14" rx="1"/>
-            <rect x="15" y="2"  width="4" height="18" rx="1"/>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A1918" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-            <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
-            <circle cx="12" cy="20" r="1" fill="#1A1918"/>
-          </svg>
-          <svg width="22" height="12" viewBox="0 0 24 12">
-            <rect x="0.5" y="0.5" width="20" height="11" rx="2.5" stroke="#1A1918" strokeWidth="1" fill="none"/>
-            <rect x="2" y="2" width="16" height="8" rx="1.5" fill="#1A1918"/>
-            <path d="M21.5 4v4a2 2 0 0 0 0-4z" fill="#1A1918"/>
-          </svg>
-        </div>
-      </div>
 
       {/* Sticky Header */}
       <div
