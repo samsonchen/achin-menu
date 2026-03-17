@@ -26,58 +26,58 @@ const _  = { zh: '', en: '', ja: '', ko: '' }  // empty multilingual field short
 // ── 海鮮類 ──────────────────────────────────────────────────────────────────
 export const seafoodItems = [
   {
-    names: { zh: '透抽·三杯',     en: 'Squid · Three Cup',      ja: 'イカ·三杯炒め',         ko: '오징어·삼배'      },
-    price: 'NT$400',      image: null, emoji: '🦑', tags: ['R'],
+    names: { zh: '三杯透抽',     en: 'Squid · Three Cup',      ja: 'イカ·三杯炒め',         ko: '오징어·삼배'      },
+    price: 'NT$400',      image: 'sf-1.jpeg', emoji: '🦑', tags: ['R'],
     desc: _, note: _,
   },
   {
-    names: { zh: '透抽·蛋香',     en: 'Squid · Egg Sauce',      ja: 'イカ·卵炒め',           ko: '오징어·달걀'      },
+    names: { zh: '蛋香透抽',     en: 'Squid · Egg Sauce',      ja: 'イカ·卵炒め',           ko: '오징어·달걀'      },
     price: 'NT$400',  image: null, emoji: '🦑', tags: ['R'],
     desc: _, note: _,
   },
   {
-    names: { zh: '透抽·清炒',     en: 'Squid · Stir-Fried',     ja: 'イカ·清炒め',           ko: '오징어·볶음'      },
+    names: { zh: '清炒透抽',     en: 'Squid · Stir-Fried',     ja: 'イカ·清炒め',           ko: '오징어·볶음'      },
     price: 'NT$400',      image: null, emoji: '🦑', tags: [],
     desc: _, note: _,
   },
   {
-    names: { zh: '鮮蚵·豆鼓',     en: 'Oyster · Black Bean',    ja: '牡蠣·豆豉',             ko: '굴·두반장'        },
-    price: 'NT$300',  image: null, emoji: '🦪', tags: [],
+    names: { zh: '豆鼓鮮蚵',     en: 'Oyster · Black Bean',    ja: '牡蠣·豆豉',             ko: '굴·두반장'        },
+    price: 'NT$300',  image: 'sf-4.png', emoji: '🦪', tags: [],
     desc: _, note: _,
   },
   {
-    names: { zh: '鮮蚵·蒜味',     en: 'Oyster · Garlic',        ja: '牡蠣·ニンニク',         ko: '굴·마늘'          },
+    names: { zh: '蒜味鮮蚵',     en: 'Oyster · Garlic',        ja: '牡蠣·ニンニク',         ko: '굴·마늘'          },
     price: 'NT$330',  image: null, emoji: '🦪', tags: [],
     desc: _, note: _,
   },
   {
-    names: { zh: '鮮蝦·川燙',     en: 'Shrimp · Blanched',      ja: 'エビ·ボイル',           ko: '새우·데침'        },
-    price: 'NT$350',      image: null, emoji: '🍤', tags: [],
+    names: { zh: '川燙鮮蝦',     en: 'Shrimp · Blanched',      ja: 'エビ·ボイル',           ko: '새우·데침'        },
+    price: 'NT$350',      image: 'sf-6.jpeg', emoji: '🍤', tags: [],
     desc: _, note: _,
   },
   {
-    names: { zh: '鮮蝦·熱炒',     en: 'Shrimp · Stir-Fried',    ja: 'エビ·炒め',             ko: '새우·볶음'        },
+    names: { zh: '熱炒鮮蝦',     en: 'Shrimp · Stir-Fried',    ja: 'エビ·炒め',             ko: '새우·볶음'        },
     price: 'NT$350',  image: null, emoji: '🍤', tags: [],
     desc: _, note: _,
   },
   {
-    names: { zh: '鮮蝦·麻油',     en: 'Shrimp · Sesame Oil',    ja: 'エビ·ごま油炒め',       ko: '새우·참기름'      },
+    names: { zh: '麻油鮮蝦',     en: 'Shrimp · Sesame Oil',    ja: 'エビ·ごま油炒め',       ko: '새우·참기름'      },
     price: 'NT$350',      image: null, emoji: '🍤', tags: [],
     desc: _, note: _,
   },
   {
-    names: { zh: '鮮蝦·蒜香奶油', en: 'Shrimp · Garlic Butter', ja: 'エビ·ガーリックバター', ko: '새우·마늘버터'    },
+    names: { zh: '蒜香奶油鮮蝦', en: 'Shrimp · Garlic Butter', ja: 'エビ·ガーリックバター', ko: '새우·마늘버터'    },
     price: 'NT$350',      image: null, emoji: '🍤', tags: ['R'],
     desc: _, note: _,
   },
   {
     names: { zh: '招牌滑蛋蝦仁', en: 'Signature Egg & Shrimp',  ja: '看板滑り卵エビ',         ko: '시그니처 달걀새우' },
-    price: 'NT$350',  image: null, emoji: '🥚', tags: ['R'],
+    price: 'NT$350',  image: 'sf-10.jpeg', emoji: '🥚', tags: ['R'],
     desc: _, note: _,
   },
   {
     names: { zh: '芹香曼波魚',   en: 'Celery Mola Fish',        ja: 'セロリ·マンボウ',       ko: '미나리·개복치'    },
-    price: 'NT$450',  image: null, emoji: '🐡', tags: [],
+    price: 'NT$450',  image: 'sf-11.png', emoji: '🐡', tags: [],
     desc: _, note: _,
   },
   {
@@ -102,7 +102,7 @@ export const stirFryItems = [
   },
   {
     names: { zh: '塔香海香菇', en: 'Basil Seafood Mushroom', ja: 'バジル·キノコ',   ko: '바질·버섯'     },
-    price: 'NT$250',  image: null,        emoji: '🍄', tags: [],
+    price: 'NT$250',  image: 'hsf-2.png',        emoji: '🍄', tags: [],
     desc: _, note: _,
   },
   {
@@ -169,7 +169,7 @@ export const friedItems = [
 export const soupItems = [
   {
     names: { zh: '蛤蜊湯',   en: 'Clam Soup',       ja: 'ハマグリスープ', ko: '조개탕'     },
-    price: 'NT$250',  image: null, emoji: '🐚', tags: [],
+    price: 'NT$250',  image: 's-1.jpeg', emoji: '🐚', tags: [],
     imgBg: '#C8F0D8', priceColor: '#3D8A5A',
     desc: _, note: _,
   },
