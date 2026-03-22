@@ -127,7 +127,7 @@ export const meatItems = [
   },
   {
     names: { zh: '沙茶羊肉',   en: 'Satay Lamb',            ja: 'サテー羊肉',      ko: '사테이 양고기'  },
-    price: 'NT$300',  image: null, emoji: '🍖', tags: ['1'],
+    price: 'NT$300',  image: '沙茶羊肉.jpg', emoji: '🍖', tags: ['1'],
     desc: _, note: _,
   },
   {
