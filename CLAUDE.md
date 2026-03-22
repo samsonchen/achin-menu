@@ -14,7 +14,7 @@ Deployment is automatic via GitHub Actions on push to `main` (deploys `dist/` to
 
 ## Architecture
 
-This is a single-page React app — a multilingual digital menu for 阿卿海鮮店 (A-Qing Seafood Restaurant). There are no routes, no state management library, and no backend.
+This is a single-page React app — a multilingual digital menu for 阿卿海鮮店 (A-Chin Seafood Restaurant). There are no routes, no state management library, and no backend.
 
 **One component file:** `src/AchinMenu.jsx` contains everything:
 
