@@ -27,7 +27,7 @@ const _  = { zh: '', en: '', ja: '', ko: '' }  // empty multilingual field short
 export const seafoodItems = [
   {
     names: { zh: '三杯透抽',     en: 'Squid · Three Cup',      ja: 'イカ·三杯炒め',         ko: '오징어·삼배'      },
-    price: 'NT$400',      image: 'sf-1.jpeg', emoji: '🦑', tags: ['R'],
+    price: 'NT$400',      image: '三杯透抽.jpeg', emoji: '🦑', tags: ['R'],
     desc: _, note: _,
   },
   {
@@ -42,7 +42,7 @@ export const seafoodItems = [
   },
   {
     names: { zh: '豆鼓鮮蚵',     en: 'Oyster · Black Bean',    ja: '牡蠣·豆豉',             ko: '굴·두치'          },
-    price: 'NT$300',  image: 'sf-4.png', emoji: '🦪', tags: [],
+    price: 'NT$300',  image: '豆鼓鮮蚵.jpg', emoji: '🦪', tags: [],
     desc: _, note: _,
   },
   {
@@ -52,12 +52,12 @@ export const seafoodItems = [
   },
   {
     names: { zh: '川燙鮮蝦',     en: 'Shrimp · Blanched',      ja: 'エビ·ボイル',           ko: '새우·데침'        },
-    price: 'NT$350',      image: 'sf-6.jpeg', emoji: '🍤', tags: [],
+    price: 'NT$350',      image: '川燙鮮蝦.jpeg', emoji: '🍤', tags: [],
     desc: _, note: _,
   },
   {
     names: { zh: '熱炒鮮蝦',     en: 'Shrimp · Stir-Fried',    ja: 'エビ·炒め',             ko: '새우·볶음'        },
-    price: 'NT$350',  image: null, emoji: '🍤', tags: [],
+    price: 'NT$350',  image: '熱炒鮮蝦.jpg', emoji: '🍤', tags: [],
     desc: _, note: _,
   },
   {
@@ -67,17 +67,17 @@ export const seafoodItems = [
   },
   {
     names: { zh: '蒜香奶油鮮蝦', en: 'Shrimp · Garlic Butter', ja: 'エビ·ガーリックバター', ko: '새우·마늘버터'    },
-    price: 'NT$350',      image: null, emoji: '🍤', tags: ['R'],
+    price: 'NT$350',      image: '蒜香奶油鮮蝦.jpg', emoji: '🍤', tags: ['R'],
     desc: _, note: _,
   },
   {
     names: { zh: '招牌滑蛋蝦仁', en: 'Signature Egg & Shrimp',  ja: '看板滑り卵エビ',         ko: '시그니처 달걀새우' },
-    price: 'NT$350',  image: 'sf-10.jpeg', emoji: '🥚', tags: ['R'],
+    price: 'NT$350',  image: '招牌滑蛋蝦仁.jpeg', emoji: '🥚', tags: ['R'],
     desc: _, note: _,
   },
   {
     names: { zh: '芹香曼波魚',   en: 'Celery Mola Fish',        ja: 'セロリ·マンボウ',       ko: '미나리·개복치'    },
-    price: 'NT$450',  image: 'sf-11.png', emoji: '🐡', tags: [],
+    price: 'NT$450',  image: '芹香曼波魚.png', emoji: '🐡', tags: [],
     desc: _, note: _,
   },
   {
@@ -87,18 +87,18 @@ export const seafoodItems = [
   },
   {
     names: { zh: '蟹肉炒蛋',     en: 'Crab Egg Stir-Fry',       ja: 'カニ肉炒り卵',           ko: '게살·달걀볶음'    },
-    price: 'NT$400',  image: null, emoji: '🦀', tags: [],
+    price: 'NT$400',  image: '蟹肉炒蛋.jpg', emoji: '🦀', tags: [],
     desc: _, note: _,
   },
   {
     names: { zh: '熱炒三鮮',   en: 'Stir-Fry Three Fresh',   ja: '三鮮炒め',       ko: '삼선볶음'      },
-    price: 'NT$350',  image: 'hsf-1.jpg', emoji: '🥘', tags: [],
+    price: 'NT$350',  image: '熱炒三鮮.jpg', emoji: '🥘', tags: [],
     desc: { zh: '魷魚、干貝、蝦仁', en: 'Squid, Scallops, Shrimp', ja: 'イカ、ホタテ、エビ', ko: '오징어、가리비、새우' },
     note: { zh: '',        en: '',    ja: '',              ko: ''             },
   },
   {
     names: { zh: '塔香海香菇', en: 'Basil Seafood Mushroom', ja: 'バジル·キノコ',   ko: '바질·버섯'     },
-    price: 'NT$250',  image: 'hsf-2.png',        emoji: '🍄', tags: [],
+    price: 'NT$250',  image: '塔香海香菇.png',        emoji: '🍄', tags: [],
     desc: _, note: _,
   },
   {
@@ -108,12 +108,12 @@ export const seafoodItems = [
   },
   {
     names: { zh: '東岸生魚片', en: 'East Coast Sashimi',     ja: '東海岸刺身',     ko: '동해안 회'     },
-    price: 'NT$350',  image: null,        emoji: '🍣', tags: [],
+    price: 'NT$350',  image: '東岸生魚片.jpg',        emoji: '🍣', tags: [],
     desc: _, note: _,
   },
   {
     names: { zh: '野生龍蝦',   en: 'Wild Lobster',           ja: '天然ロブスター', ko: '자연산 랍스터' },
-    price: 'market',  image: 'sf-18.jpg',        emoji: '🦞', tags: [],
+    price: 'market',  image: '野生龍蝦.jpg',        emoji: '🦞', tags: [],
     desc: _, note: _,
   },
 ]
@@ -141,7 +141,7 @@ export const meatItems = [
 export const friedItems = [
   {
     names: { zh: '花枝丸',   en: 'Squid Balls',       ja: 'イカ団子',       ko: '오징어볼'    },
-    price: 'NT$250',  image: null, emoji: '🦑', tags: [],
+    price: 'NT$250',  image: '花枝丸.jpg', emoji: '🦑', tags: [],
     desc: _, note: _,
   },
   {
@@ -151,12 +151,12 @@ export const friedItems = [
   },
   {
     names: { zh: '炸魚柳',   en: 'Fried Fish Fillet', ja: '魚フライ',       ko: '생선튀김'    },
-    price: 'NT$300',  image: null, emoji: '🐟', tags: [],
+    price: 'NT$300',  image: '炸魚柳.jpg', emoji: '🐟', tags: [],
     desc: _, note: _,
   },
   {
     names: { zh: '魚蛋沙拉', en: 'Fish Ball Salad',   ja: '魚団子サラダ',   ko: '어묵 샐러드' },
-    price: 'NT$300',  image: null, emoji: '🥗', tags: [],
+    price: 'NT$300',  image: '魚蛋沙拉.jpg', emoji: '🥗', tags: [],
     desc: _, note: _,
   },
 ]
@@ -165,7 +165,7 @@ export const friedItems = [
 export const soupItems = [
   {
     names: { zh: '蛤蜊湯',   en: 'Clam Soup',       ja: 'ハマグリスープ', ko: '조개탕'     },
-    price: 'NT$250',  image: 's-1.jpeg', emoji: '🐚', tags: [],
+    price: 'NT$250',  image: '蛤蜊湯.jpeg', emoji: '🐚', tags: [],
     imgBg: '#C8F0D8', priceColor: '#3D8A5A',
     desc: _, note: _,
   },
@@ -208,7 +208,7 @@ export const stapleItems = [
   },
   {
     names: { zh: '炒麵',  en: 'Fried Noodles', ja: '焼きそば', ko: '볶음면' },
-    price: 'NT$100',  image: null, emoji: '🍜', tags: ['P'],
+    price: 'NT$100',  image: '炒麵.jpg', emoji: '🍜', tags: ['P'],
     sub: { zh: '每份計算', en: 'Per serving',  ja: '一人前ごと', ko: '1인분당' },
     desc: _, note: _,
   },
