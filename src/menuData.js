@@ -90,10 +90,6 @@ export const seafoodItems = [
     price: 'NT$400',  image: null, emoji: '🦀', tags: [],
     desc: _, note: _,
   },
-]
-
-// ── 熱炒類 ──────────────────────────────────────────────────────────────────
-export const stirFryItems = [
   {
     names: { zh: '熱炒三鮮',   en: 'Stir-Fry Three Fresh',   ja: '三鮮炒め',       ko: '삼선볶음'      },
     price: 'NT$350',  image: 'hsf-1.jpg', emoji: '🥘', tags: [],
@@ -117,7 +113,7 @@ export const stirFryItems = [
   },
   {
     names: { zh: '野生龍蝦',   en: 'Wild Lobster',           ja: '天然ロブスター', ko: '자연산 랍스터' },
-    price: 'market',  image: null,        emoji: '🦞', tags: [],
+    price: 'market',  image: 'sf-18.jpg',        emoji: '🦞', tags: [],
     desc: _, note: _,
   },
 ]
@@ -150,7 +146,7 @@ export const friedItems = [
   },
   {
     names: { zh: '薯條',     en: 'French Fries',      ja: 'フライドポテト', ko: '감자튀김'    },
-    price: 'NT$120',  image: null, emoji: '🍟', tags: ['V'],
+    price: 'NT$120',  image: '炸薯條.jpg', emoji: '🍟', tags: ['V'],
     desc: _, note: _,
   },
   {

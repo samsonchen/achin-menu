@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  seafoodItems, stirFryItems, meatItems,
+  seafoodItems, meatItems,
   friedItems, soupItems, vegItems, stapleItems,
 } from './menuData'
 
@@ -15,7 +15,6 @@ const UI = {
     heroSub:      '新鮮海味·道地台灣風',
     heroTitle:    '阿卿海鮮店',
     marketPrice:  '時價',
-    stirFryNote:  '可選: 沙拉·清蒸·味噌湯',
     vegSub:       '當季新鮮蔬菜',
     footerSub:    'A-Qing Seafood Restaurant',
     footerLang:   '語言選擇 · Language',
@@ -26,7 +25,6 @@ const UI = {
     tagLegend:    '標記說明',
     sections: {
       seafood:  { main: '海鮮類', sub: '(Seafood)' },
-      stirFry:  { main: '熱炒類', sub: '(Hot Stir-Fry)' },
       meat:     { main: '肉類',   sub: '(Meat)' },
       fried:    { main: '炸物類', sub: 'Fried Foods' },
       soups:    { main: '熱湯類', sub: 'Hot Soups' },
@@ -39,7 +37,6 @@ const UI = {
     heroSub:      'Fresh Seafood · Authentic Taiwanese Flavour',
     heroTitle:    'A-Qing Seafood',
     marketPrice:  'Market Price',
-    stirFryNote:  'Options: Salad · Steamed · Miso Soup',
     vegSub:       'Fresh seasonal greens',
     footerSub:    'A-Qing Seafood Restaurant',
     footerLang:   'Language · 語言選擇',
@@ -50,7 +47,6 @@ const UI = {
     tagLegend:    'Legend',
     sections: {
       seafood:  { main: 'Seafood',     sub: '海鮮類' },
-      stirFry:  { main: 'Stir-Fry',    sub: '熱炒類' },
       meat:     { main: 'Meat',        sub: '肉類' },
       fried:    { main: 'Fried Foods', sub: '炸物類' },
       soups:    { main: 'Hot Soups',   sub: '熱湯類' },
@@ -63,7 +59,6 @@ const UI = {
     heroSub:      '新鮮な海の幸・本場台湾風',
     heroTitle:    '阿卿海鮮店',
     marketPrice:  '時価',
-    stirFryNote:  'オプション：サラダ・蒸し・味噌汁',
     vegSub:       '新鮮な旬の野菜',
     footerSub:    'A-Qing シーフードレストラン',
     footerLang:   '言語選択 · Language',
@@ -74,7 +69,6 @@ const UI = {
     tagLegend:    '凡例',
     sections: {
       seafood:  { main: '海鮮類',     sub: 'Seafood' },
-      stirFry:  { main: '炒め物類',   sub: 'Hot Stir-Fry' },
       meat:     { main: '肉類',       sub: 'Meat' },
       fried:    { main: '揚げ物類',   sub: 'Fried Foods' },
       soups:    { main: 'スープ類',   sub: 'Hot Soups' },
@@ -87,7 +81,6 @@ const UI = {
     heroSub:      '신선한 해산물 · 정통 대만 맛',
     heroTitle:    '아칭 해산물 식당',
     marketPrice:  '시가',
-    stirFryNote:  '선택: 샐러드 · 찜 · 된장국',
     vegSub:       '신선한 제철 채소',
     footerSub:    'A-Qing 해산물 식당',
     footerLang:   '언어 선택 · Language',
@@ -98,7 +91,6 @@ const UI = {
     tagLegend:    '범례',
     sections: {
       seafood:  { main: '해산물류',  sub: 'Seafood' },
-      stirFry:  { main: '볶음류',    sub: 'Hot Stir-Fry' },
       meat:     { main: '육류',      sub: 'Meat' },
       fried:    { main: '튀김류',    sub: 'Fried Foods' },
       soups:    { main: '국물류',    sub: 'Hot Soups' },
@@ -471,15 +463,6 @@ export default function AchinMenu() {
         <SectionHeaderSmall accent="#D89575" {...t.sections.seafood} />
         <div className="px-3 pb-4">
           <Grid items={localise(seafoodItems)} lk={lk} onSelect={setSelectedItem} />
-        </div>
-      </div>
-
-      {/* 熱炒類 Section */}
-      <div className="bg-[#FAFAF8]">
-        <SectionHeaderSmall accent="#3D8A5A" {...t.sections.stirFry} />
-        <div className="px-3 pb-4 flex flex-col gap-3">
-          <Grid items={localise(stirFryItems)} lk={lk} onSelect={setSelectedItem} />
-          <span className="text-[11px] text-[#9C9B99] mt-1">{t.stirFryNote}</span>
         </div>
       </div>
 
