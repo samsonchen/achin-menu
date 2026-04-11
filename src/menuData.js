@@ -32,12 +32,12 @@ export const seafoodItems = [
   },
   {
     names: { zh: '蛋香透抽',     en: 'Squid · Egg Sauce',      ja: 'イカ·卵炒め',           ko: '오징어·달걀'      },
-    price: 'NT$400',  image: null, emoji: '🦑', tags: ['R'],
+    price: 'NT$400',  image: '蛋香透抽.jpg', emoji: '🦑', tags: ['R'],
     desc: _, note: _,
   },
   {
     names: { zh: '清炒透抽',     en: 'Squid · Stir-Fried',     ja: 'イカ·清炒め',           ko: '오징어·볶음'      },
-    price: 'NT$400',      image: null, emoji: '🦑', tags: [],
+    price: 'NT$400',      image: '清炒透抽.jpg', emoji: '🦑', tags: [],
     desc: _, note: _,
   },
   {
@@ -47,7 +47,7 @@ export const seafoodItems = [
   },
   {
     names: { zh: '蒜味鮮蚵',     en: 'Oyster · Garlic',        ja: '牡蠣·ニンニク',         ko: '굴·마늘'          },
-    price: 'NT$330',  image: null, emoji: '🦪', tags: [],
+    price: 'NT$330',  image: '蒜味鮮蚵.jpg', emoji: '🦪', tags: [],
     desc: _, note: _,
   },
   {
@@ -82,7 +82,7 @@ export const seafoodItems = [
   },
   {
     names: { zh: '蒜苗鯊魚肉',   en: 'Garlic Shoots & Shark',   ja: '青ニンニク·サメ肉',     ko: '마늘종·상어살'    },
-    price: 'NT$400',  image: null, emoji: '🦈', tags: [],
+    price: 'NT$400',  image: '蒜苗鯊魚肉.jpg', emoji: '🦈', tags: [],
     desc: _, note: _,
   },
   {
@@ -103,7 +103,7 @@ export const seafoodItems = [
   },
   {
     names: { zh: '清蒸石斑魚', en: 'Steamed Grouper',        ja: '石斑魚の蒸し',   ko: '쪄낸 능성어'   },
-    price: 'NT$500',  image: null,        emoji: '🐠', tags: [],
+    price: 'NT$500',  image: '清蒸石斑魚.jpg',        emoji: '🐠', tags: [],
     desc: _, note: _,
   },
   {
@@ -122,7 +122,7 @@ export const seafoodItems = [
 export const meatItems = [
   {
     names: { zh: '醬爆嫩牛肉', en: 'Soy Sauce Stir-Fried Beef', ja: '醤炒め牛肉',  ko: '소스볶음 소고기' },
-    price: 'NT$280',  image: null, emoji: '🥩', tags: ['R', '3', 'B'],
+    price: 'NT$280',  image: '醬爆嫩牛肉.jpg', emoji: '🥩', tags: ['R', '3', 'B'],
     desc: _, note: _,
   },
   {
@@ -132,7 +132,7 @@ export const meatItems = [
   },
   {
     names: { zh: '秘製滷豬腳', en: 'Braised Pork Knuckle', ja: '秘伝豚足煮込み',  ko: '비법 족발조림'  },
-    price: 'NT$550',  image: null, emoji: '🍗', tags: ['R', 'P'],
+    price: 'NT$550',  image: '秘製滷豬腳.jpg', emoji: '🍗', tags: ['R', 'P'],
     desc: _, note: _,
   },
 ]
