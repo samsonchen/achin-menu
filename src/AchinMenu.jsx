@@ -12,7 +12,7 @@ const LANG_KEY = { '中文': 'zh', 'EN': 'en', '日本語': 'ja', '한국어': '
 const UI = {
   zh: {
     langLabel:    '顯示語言 · Display Language',
-    heroSub:      '新鮮海味·道地台灣風',
+    heroSub:      '花蓮縣豐濱鄉三民路33號 / 0921-854-068',
     heroTitle:    '阿卿海鮮店',
     marketPrice:  '時價',
     vegSub:       '當季新鮮蔬菜',
@@ -34,7 +34,7 @@ const UI = {
   },
   en: {
     langLabel:    'Display Language · 顯示語言',
-    heroSub:      'Fresh Seafood · Authentic Taiwanese Flavour',
+    heroSub:      '33 Sanmin Rd., Fengbin Township, Hualien / 0921-854-068',
     heroTitle:    'A-Chin Seafood',
     marketPrice:  'Market Price',
     vegSub:       'Fresh seasonal greens',
@@ -56,7 +56,7 @@ const UI = {
   },
   ja: {
     langLabel:    '言語選択 · Display Language',
-    heroSub:      '新鮮な海の幸・本場台湾風',
+    heroSub:      '花蓮県豊浜郷三民路33号 / 0921-854-068',
     heroTitle:    '阿卿海鮮店',
     marketPrice:  '時価',
     vegSub:       '新鮮な旬の野菜',
@@ -78,7 +78,7 @@ const UI = {
   },
   ko: {
     langLabel:    '언어 선택 · Display Language',
-    heroSub:      '신선한 해산물 · 정통 대만 맛',
+    heroSub:      '화롄현 펑빈향 싼민로 33호 / 0921-854-068',
     heroTitle:    '아칭 해산물 식당',
     marketPrice:  '시가',
     vegSub:       '신선한 제철 채소',
