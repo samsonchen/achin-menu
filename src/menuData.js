@@ -171,13 +171,13 @@ export const soupItems = [
   },
   {
     names: { zh: '鮮蚵湯',   en: 'Oyster Soup',     ja: '牡蠣スープ',     ko: '굴탕'       },
-    price: 'NT$300',  image: null, emoji: '🦪', tags: [],
+    price: 'NT$300',  image: '鮮蚵湯.jpg', emoji: '🦪', tags: [],
     imgBg: '#C8F0D8', priceColor: '#3D8A5A',
     desc: _, note: _,
   },
   {
     names: { zh: '味噌魚湯', en: 'Miso Fish Soup',  ja: '味噌魚スープ',   ko: '된장생선국' },
-    price: 'NT$480',  image: null, emoji: '🐡', tags: [],
+    price: 'NT$480',  image: '味噌魚湯.jpg', emoji: '🐡', tags: [],
     imgBg: '#FFF3E0', priceColor: '#D89575',
     desc: _, note: _,
   },
