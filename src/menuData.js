@@ -62,7 +62,7 @@ export const seafoodItems = [
   },
   {
     names: { zh: '麻油鮮蝦',     en: 'Shrimp · Sesame Oil',    ja: 'エビ·ごま油炒め',       ko: '새우·참기름'      },
-    price: 'NT$350',      image: null, emoji: '🍤', tags: [],
+    price: 'NT$350',      image: '麻油鮮蝦.jpg', emoji: '🍤', tags: [],
     desc: _, note: _,
   },
   {
@@ -183,7 +183,7 @@ export const soupItems = [
   },
   {
     names: { zh: '鮮魚清湯', en: 'Clear Fish Soup', ja: '魚の清湯',       ko: '맑은생선국' },
-    price: 'NT$480',  image: null, emoji: '🍵', tags: [],
+    price: 'NT$480',  image: '鮮魚清湯.jpg', emoji: '🍵', tags: [],
     imgBg: '#FFF3E0', priceColor: '#D89575',
     desc: _, note: _,
   },
